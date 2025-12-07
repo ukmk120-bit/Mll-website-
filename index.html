@@ -524,8 +524,8 @@
       color: #9ca3af;
     }
 
-    /* ===== छोटं Admin बटन (फक्त तुला माहित) ===== */
-    #admin-toggle {
+    /* ===== छोटं Admin बटन (फक्त admin मोडमध्ये) ===== */
+#admin-toggle {
       position: fixed;
       right: 10px;
       bottom: 10px;
@@ -533,10 +533,11 @@
       font-size: 10px;
       opacity: 0.25;
       cursor: pointer;
-    }
-    #admin-toggle:hover {
+      display: none; /* default: public ला दिसणार नाही */
+}
+#admin-toggle:hover {
       opacity: 0.9;
-    }
+}
 
     /* ===== Footer ===== */
     footer {
