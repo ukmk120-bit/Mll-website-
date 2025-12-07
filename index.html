@@ -10,8 +10,12 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #020617;
-      color: #f9fafb;
+      background:
+        radial-gradient(circle at 0% 0%, #ffe4e6 0, transparent 45%),
+        radial-gradient(circle at 100% 0%, #dbeafe 0, transparent 45%),
+        radial-gradient(circle at 0% 100%, #dcfce7 0, transparent 45%),
+        #f3f4f6;
+      color: #111827;
       line-height: 1.6;
     }
     a { color: inherit; text-decoration: none; }
@@ -28,9 +32,10 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(2,6,23,0.94);
-      border-bottom: 1px solid rgba(30,64,175,0.6);
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.9);
+      border-bottom: 1px solid rgba(209,213,219,0.9);
+      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
     }
 
     .nav {
@@ -53,21 +58,23 @@
       width: 34px;
       height: 34px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #22c55e, #4ade80 40%, #22d3ee 70%, #0f172a);
-      border: 1px solid rgba(74,222,128,0.7);
-      box-shadow: 0 0 18px rgba(22,163,74,0.9);
+      background: radial-gradient(circle at 30% 20%,
+                  #f97316, #ec4899 40%, #8b5cf6 70%, #2563eb 100%);
+      border: 2px solid rgba(248,250,252,0.9);
+      box-shadow: 0 0 14px rgba(236,72,153,0.7);
     }
 
     .brand-text-main {
       font-weight: 800;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       font-size: 14px;
       text-transform: uppercase;
+      color: #111827;
     }
 
     .brand-text-sub {
       font-size: 11px;
-      color: #9ca3af;
+      color: #6b7280;
     }
 
     .nav-links {
@@ -78,14 +85,18 @@
     }
 
     .nav-links a {
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid transparent;
+      color: #374151;
+      background: transparent;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
     }
 
     .nav-links a:hover {
-      border-color: rgba(148,163,184,0.7);
-      background: rgba(15,23,42,0.95);
+      border-color: rgba(148,163,184,0.8);
+      background: #eff6ff;
+      transform: translateY(-1px);
     }
 
     @media (max-width: 720px) {
@@ -112,19 +123,20 @@
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #a5b4fc;
+      color: #6366f1;
       margin-bottom: 4px;
     }
 
     .section-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 4px;
+      color: #111827;
     }
 
     .section-sub {
       font-size: 13px;
-      color: #9ca3af;
+      color: #4b5563;
     }
 
     /* ===== Hero ===== */
@@ -148,14 +160,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(209,213,219,0.9);
+      background: linear-gradient(120deg,#f9fafb,#e0f2fe,#fef3c7);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       margin-bottom: 10px;
+      color: #374151;
     }
 
     .badge-dot {
@@ -163,30 +176,31 @@
       height: 6px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+      box-shadow: 0 0 8px rgba(34,197,94,0.7);
     }
 
     .hero-title {
       font-size: clamp(26px, 4vw, 34px);
       font-weight: 800;
       margin-bottom: 10px;
+      color: #111827;
     }
 
     .hero-title span {
-      background: linear-gradient(120deg, #22c55e, #4ade80, #22d3ee);
+      background: linear-gradient(120deg,#f97316,#ec4899,#8b5cf6,#2563eb);
       -webkit-background-clip: text;
       color: transparent;
     }
 
     .hero-sub {
       font-size: 14px;
-      color: #e5e7eb;
+      color: #4b5563;
       max-width: 520px;
       margin-bottom: 16px;
     }
 
     .hero-sub strong {
-      color: #bbf7d0;
+      color: #1d4ed8;
     }
 
     .cta-row {
@@ -201,46 +215,58 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
-      border: 1px solid rgba(148,163,184,0.7);
+      border: 1px solid transparent;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.16s ease, background 0.16s ease;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: radial-gradient(circle at 0% 0%, #22c55e, #16a34a 50%, #0f172a);
-      border-color: rgba(74,222,128,0.9);
-      box-shadow: 0 12px 30px rgba(22,163,74,0.8);
+      background: linear-gradient(120deg,#f97316,#ec4899,#8b5cf6,#2563eb);
+      box-shadow: 0 12px 26px rgba(79,70,229,0.35);
+      color: #f9fafb;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(22,163,74,1);
+      box-shadow: 0 16px 32px rgba(79,70,229,0.5);
     }
 
     .btn-ghost {
-      background: rgba(15,23,42,0.95);
+      border-color: rgba(156,163,175,0.9);
+      background: #ffffff;
+      color: #374151;
+    }
+
+    .btn-ghost:hover {
+      background: #eff6ff;
+      box-shadow: 0 8px 18px rgba(148,163,184,0.35);
+      transform: translateY(-1px);
     }
 
     .hero-note {
       font-size: 11px;
-      color: #9ca3af;
+      color: #6b7280;
     }
 
     .hero-note strong {
-      color: #e5e7eb;
+      color: #111827;
     }
 
     /* ===== Hero Card (Right) ===== */
     .hero-card {
       border-radius: 22px;
       padding: 16px;
-      background: radial-gradient(circle at 0% 0%, rgba(74,222,128,0.22), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(45,212,191,0.24), transparent 55%),
-                  #020617;
-      border: 1px solid rgba(148,163,184,0.55);
-      box-shadow: 0 22px 40px rgba(15,23,42,0.95);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(244,114,182,0.16), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(59,130,246,0.16), transparent 60%),
+        #ffffff;
+      border: 1px solid rgba(209,213,219,0.9);
+      box-shadow: 0 20px 40px rgba(15,23,42,0.08);
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -252,18 +278,19 @@
       justify-content: space-between;
       gap: 8px;
       font-size: 12px;
-      color: #e5e7eb;
+      color: #111827;
     }
 
     .status-pill {
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(22,163,74,0.16);
+      background: rgba(34,197,94,0.12);
       border: 1px solid rgba(34,197,94,0.7);
       font-size: 11px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      color: #15803d;
     }
 
     .status-dot {
@@ -271,12 +298,12 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 12px rgba(34,197,94,0.8);
+      box-shadow: 0 0 10px rgba(34,197,94,0.8);
     }
 
     .hero-list {
       font-size: 12px;
-      color: #d1d5db;
+      color: #4b5563;
       list-style: none;
       display: grid;
       gap: 4px;
@@ -284,7 +311,7 @@
 
     .hero-list li::before {
       content: "• ";
-      color: #4ade80;
+      color: #2563eb;
     }
 
     .metrics {
@@ -297,18 +324,19 @@
     .metric {
       padding: 8px;
       border-radius: 14px;
-      background: rgba(15,23,42,0.96);
-      border: 1px solid rgba(148,163,184,0.4);
+      background: #f9fafb;
+      border: 1px solid rgba(229,231,235,0.9);
     }
 
     .metric-label {
-      color: #9ca3af;
+      color: #6b7280;
       margin-bottom: 2px;
     }
 
     .metric-value {
       font-weight: 700;
       font-size: 13px;
+      color: #111827;
     }
 
     /* ===== Cards / Grids ===== */
@@ -321,19 +349,21 @@
     .card {
       padding: 14px;
       border-radius: 18px;
-      background: rgba(15,23,42,0.97);
-      border: 1px solid rgba(148,163,184,0.45);
+      background: #ffffff;
+      border: 1px solid rgba(229,231,235,0.9);
       font-size: 13px;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.04);
     }
 
     .card h3 {
       font-size: 14px;
       margin-bottom: 6px;
+      color: #111827;
     }
 
     .card p {
       font-size: 12px;
-      color: #d1d5db;
+      color: #4b5563;
     }
 
     .pill {
@@ -341,14 +371,24 @@
       align-items: center;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
-      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(209,213,219,0.9);
+      background: #ffffff;
       font-size: 11px;
-      color: #e5e7eb;
+      color: #374151;
+      gap: 4px;
     }
 
     .pill + .pill {
       margin-left: 6px;
+    }
+
+    /* Google-style छोटासा रंग हायलाइट */
+    .pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(120deg,#2563eb,#16a34a,#facc15,#ef4444);
     }
 
     /* ===== Products ===== */
@@ -356,11 +396,12 @@
       font-size: 13px;
       font-weight: 700;
       margin-top: 4px;
+      color: #111827;
     }
     .price span {
       font-size: 11px;
       font-weight: 400;
-      color: #9ca3af;
+      color: #6b7280;
     }
 
     .product-actions {
@@ -373,14 +414,19 @@
     .btn-small {
       padding: 4px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
-      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(209,213,219,0.9);
+      background: #f9fafb;
       font-size: 11px;
       cursor: pointer;
+      color: #374151;
+      transition: background 0.14s ease, transform 0.12s ease, box-shadow 0.14s ease;
     }
 
     .btn-small:hover {
-      border-color: #22c55e;
+      border-color: #2563eb;
+      background: #e0f2fe;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37,99,235,0.25);
     }
 
     /* ===== Contact / Form ===== */
@@ -404,27 +450,29 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #9ca3af;
+      color: #6b7280;
     }
 
     .contact-item-value {
       font-size: 13px;
       font-weight: 600;
+      color: #111827;
     }
 
     form {
       display: grid;
       gap: 10px;
       font-size: 13px;
-      background: rgba(15,23,42,0.96);
+      background: #ffffff;
       border-radius: 18px;
       padding: 14px;
-      border: 1px solid rgba(148,163,184,0.45);
+      border: 1px solid rgba(229,231,235,0.9);
+      box-shadow: 0 12px 26px rgba(15,23,42,0.05);
     }
 
     label {
       font-size: 12px;
-      color: #e5e7eb;
+      color: #111827;
       display: block;
       margin-bottom: 2px;
     }
@@ -433,16 +481,18 @@
       width: 100%;
       padding: 7px 9px;
       border-radius: 10px;
-      border: 1px solid rgba(75,85,99,0.9);
-      background: #020617;
-      color: #e5e7eb;
+      border: 1px solid rgba(209,213,219,0.9);
+      background: #ffffff;
+      color: #111827;
       font-size: 13px;
       outline: none;
+      transition: border-color 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
     }
 
     input:focus, textarea:focus, select:focus {
-      border-color: #22c55e;
-      box-shadow: 0 0 0 1px rgba(34,197,94,0.4);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.35);
+      background: #eff6ff;
     }
 
     textarea {
@@ -452,25 +502,26 @@
 
     .form-hint {
       font-size: 11px;
-      color: #9ca3af;
+      color: #6b7280;
     }
 
     .btn-submit {
       padding: 8px 14px;
       border-radius: 999px;
       border: none;
-      background: radial-gradient(circle at 0% 0%, #22c55e, #16a34a 50%, #166534);
+      background: linear-gradient(120deg,#22c55e,#16a34a,#15803d);
       color: #f9fafb;
       font-weight: 600;
       font-size: 13px;
       cursor: pointer;
       justify-self: flex-start;
-      box-shadow: 0 10px 26px rgba(22,163,74,0.9);
+      box-shadow: 0 10px 22px rgba(22,163,74,0.45);
+      transition: transform 0.12s ease, box-shadow 0.16s ease;
     }
 
     .btn-submit:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(22,163,74,1);
+      box-shadow: 0 14px 30px rgba(22,163,74,0.65);
     }
 
     /* ===== Admin Panel ===== */
@@ -478,16 +529,17 @@
       margin-top: 18px;
       padding: 12px;
       border-radius: 16px;
-      background: rgba(15,23,42,0.96);
-      border: 1px dashed rgba(148,163,184,0.6);
+      background: #f9fafb;
+      border: 1px dashed rgba(209,213,219,0.9);
       font-size: 12px;
-      display: none;  /* default: public view मध्ये दिसणार नाही */
+      display: none;  /* default: लोकांना दिसणार नाही */
     }
 
     .admin-title {
       font-size: 13px;
       font-weight: 600;
       margin-bottom: 6px;
+      color: #111827;
     }
 
     .admin-grid {
@@ -521,29 +573,31 @@
 
     .admin-badge {
       font-size: 11px;
-      color: #9ca3af;
+      color: #6b7280;
     }
 
-    /* ===== छोटं Admin बटन (फक्त admin मोडमध्ये) ===== */
+    /* ===== छोटं Admin बटन (फक्त तुला माहित) ===== */
     #admin-toggle {
       position: fixed;
       right: 10px;
       bottom: 10px;
       z-index: 30;
       font-size: 10px;
-      opacity: 0.25;
+      opacity: 0.4;
       cursor: pointer;
-      display: none; /* public ला default hide */
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.15);
     }
     #admin-toggle:hover {
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     /* ===== Footer ===== */
     footer {
-      border-top: 1px solid rgba(31,41,55,0.9);
+      border-top: 1px solid rgba(229,231,235,0.9);
       font-size: 11px;
-      color: #9ca3af;
+      color: #6b7280;
+      background: #ffffff;
     }
 
     .footer-inner {
@@ -615,8 +669,8 @@
         <aside class="hero-card" aria-label="Business snapshot">
           <div class="hero-card-header">
             <div>
-              <div style="font-size:13px; font-weight:600;">MLL Business Snapshot</div>
-              <div style="font-size:11px; color:#9ca3af;">Supply • Services • Long-term clients</div>
+              <div style="font-size:13px; font-weight:600; color:#111827;">MLL Business Snapshot</div>
+              <div style="font-size:11px; color:#6b7280;">Supply • Services • Long-term clients</div>
             </div>
             <div class="status-pill">
               <span class="status-dot"></span>
@@ -661,7 +715,7 @@
           <!-- JS इथे प्रॉडक्ट कार्ड्स टाकेल -->
         </div>
 
-        <!-- ===== Admin Panel for Products (फक्त admin साठी) ===== -->
+        <!-- ===== Admin Panel for Products (फक्त admin साठी, default hidden) ===== -->
         <div class="admin-panel">
           <div class="admin-title">Products Manage Panel (Admin)</div>
           <div class="admin-grid">
@@ -707,7 +761,7 @@
         </div>
       </section>
 
-      <!-- ===== Why Us Section ===== -->
+     <!-- ===== Why Us Section ===== -->
       <section id="why-us" class="section">
         <div class="section-header">
           <div class="section-kicker">WHY MLL</div>
@@ -854,7 +908,7 @@
           <h2 class="section-title">इथे Contact करा</h2>
           <p class="section-sub">
             खाली basic माहिती fill करा किंवा direct WhatsApp / कॉल करा.  
-            Form भरल्यावर तुमच्या मोबाईलवर WhatsApp open होईल आणि मेसेज ready होईल.
+            Form सध्या demo आहे – live करण्यासाठी नंतर backend / Google Form connect करू शकतो.
           </p>
         </div>
 
@@ -890,7 +944,7 @@
             </div>
           </div>
 
-          <!-- Right: Form -->
+          <!-- Right: Simple Form (Front-end only) -->
           <div>
             <form onsubmit="handleSubmit(event)">
               <div>
@@ -903,6 +957,7 @@
               </div>
               <div>
                 <label for="product">उत्पादन</label>
+                <!-- इथे तुला फोटोमध्ये दिसणारे options आहेत, हवे तसे नंतर बदलू शकतोस -->
                 <select id="product" name="product">
                   <option value="खवा / मावा">खवा / मावा</option>
                   <option value="दूध">दूध</option>
@@ -920,10 +975,10 @@
                 <textarea id="message" name="message" placeholder="आपली requirement थोडक्यात लिहा."></textarea>
               </div>
               <p class="form-hint">
-                Submit वर क्लिक केल्यावर WhatsApp वर मेसेज तयार होईल.  
-                Actual order confirm करण्यासाठी तुम्ही किंवा आम्ही chat / call वर तपशील final करू.
+                Submit वर क्लिक केल्यावर माहिती फक्त इथे ब्राउझरमध्येच दिसेल.  
+                Actual order साठी कृपया WhatsApp / कॉल वर confirm करा.
               </p>
-              <button type="submit" class="btn-submit">Inquiry WhatsApp वर पाठवा</button>
+              <button type="submit" class="btn-submit">Inquiry Save (Demo)</button>
               <p id="form-status" class="form-hint"></p>
             </form>
           </div>
@@ -940,40 +995,36 @@
     </footer>
   </div>
 
-  <!-- लहान Admin बटन (फक्त admin मोडमध्ये) -->
+  <!-- लहान Admin बटन (फक्त तुला माहित) -->
   <div id="admin-toggle" class="pill">Admin</div>
 
-  <script>
-    // URL मधून admin मोड तपासा (?admin=MLL2025)
-    const urlParams = new URLSearchParams(window.location.search);
-    const isAdmin = urlParams.get("admin") === "MLL2025";
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+  // ===== Contact form – WhatsApp ला मेसेज पाठवण्यासाठी =====
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    // ===== Contact form – WhatsApp ला मेसेज पाठवण्यासाठी =====
-    function handleSubmit(e) {
-      e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const product = document.getElementById("product").value;
+    const quantity = document.getElementById("quantity").value.trim();
+    const msg = document.getElementById("message").value.trim();
 
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const product = document.getElementById("product").value;
-      const quantity = document.getElementById("quantity").value.trim();
-      const msg = document.getElementById("message").value.trim();
+    const text = encodeURIComponent(
+      `MLL साठी नवीन Inquiry:\n\n` +
+      `नाव: ${name}\n` +
+      `मोबाईल: ${phone}\n` +
+      `उत्पादन: ${product}\n` +
+      `Quantity: ${quantity}\n` +
+      `मेसेज: ${msg}`
+    );
 
-      const text = encodeURIComponent(
-        `MLL साठी नवीन Inquiry:\n\n` +
-        `नाव: ${name}\n` +
-        `मोबाईल: ${phone}\n` +
-        `उत्पादन: ${product}\n` +
-        `Quantity: ${quantity}\n` +
-        `मेसेज: ${msg}`
-      );
+    const url = `https://wa.me/919765079101?text=${text}`;
+    window.location.href = url;
+  }
 
-      const url = `https://wa.me/919765079101?text=${text}`;
-      window.location.href = url;
-    }
-
-    // ===== Products Dynamic Logic with localStorage =====
+  // ===== Products Dynamic Logic with localStorage =====
     const PRODUCTS_KEY = "mllProductsV1";
 
     let products = [];
@@ -1043,7 +1094,7 @@
         const empty = document.createElement("p");
         empty.textContent = "सध्या कोणतेही products नाहीत. Admin मोडमधून add करा.";
         empty.style.fontSize = "13px";
-        empty.style.color = "#9ca3af";
+        empty.style.color = "#6b7280";
         productsContainer.appendChild(empty);
         return;
       }
@@ -1079,26 +1130,23 @@
           card.appendChild(tagsWrapper);
         }
 
-        // Edit/Delete फक्त admin मोडमध्येच
-        if (isAdmin) {
-          const actions = document.createElement("div");
-          actions.className = "product-actions";
+        const actions = document.createElement("div");
+        actions.className = "product-actions";
 
-          const editBtn = document.createElement("button");
-          editBtn.className = "btn-small";
-          editBtn.textContent = "Edit";
-          editBtn.dataset.index = index;
+        const editBtn = document.createElement("button");
+        editBtn.className = "btn-small";
+        editBtn.textContent = "Edit";
+        editBtn.dataset.index = index;
 
-          const deleteBtn = document.createElement("button");
-          deleteBtn.className = "btn-small";
-          deleteBtn.textContent = "Delete";
-          deleteBtn.dataset.index = index;
-          deleteBtn.style.borderColor = "rgba(239,68,68,0.8)";
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "btn-small";
+        deleteBtn.textContent = "Delete";
+        deleteBtn.dataset.index = index;
+        deleteBtn.style.borderColor = "rgba(239,68,68,0.8)";
 
-          actions.appendChild(editBtn);
-          actions.appendChild(deleteBtn);
-          card.appendChild(actions);
-        }
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+        card.appendChild(actions);
 
         productsContainer.appendChild(card);
       });
@@ -1183,24 +1231,16 @@
       }
     });
 
-    // ===== Admin toggle फक्त admin मोडमध्ये enable =====
-    if (adminToggle) {
-      if (isAdmin) {
-        adminToggle.style.display = "block";
-        adminToggle.addEventListener("click", function () {
-          const code = prompt("Admin code टाका:");
-          // इथे कोड तू हव्या त्या नंबरवर बदलू शकतोस
-          if (code === "9765") {
-            adminPanel.style.display = "block";
-            adminStatus.textContent = "Admin mode ON.";
-          } else if (code !== null) {
-            alert("Wrong code.");
-          }
-        });
-      } else {
-        adminToggle.style.display = "none";
+    // ===== Admin toggle (फक्त कोड माहित असणाऱ्याला panel दिसेल) =====
+    adminToggle.addEventListener("click", function () {
+      const code = prompt("Admin code टाका:");
+      if (code === "9765") {
+        adminPanel.style.display = "block";
+        adminStatus.textContent = "Admin mode ON.";
+      } else if (code !== null) {
+        alert("Wrong code.");
       }
-    }
+    });
 
     // Init
     loadProducts();
