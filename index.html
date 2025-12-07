@@ -481,7 +481,7 @@
       background: rgba(15,23,42,0.96);
       border: 1px dashed rgba(148,163,184,0.6);
       font-size: 12px;
-      display: none;  /* default: लोकांना दिसणार नाही */
+      display: none;  /* default: public view मध्ये दिसणार नाही */
     }
 
     .admin-title {
@@ -525,7 +525,7 @@
     }
 
     /* ===== छोटं Admin बटन (फक्त admin मोडमध्ये) ===== */
-#admin-toggle {
+    #admin-toggle {
       position: fixed;
       right: 10px;
       bottom: 10px;
@@ -533,11 +533,11 @@
       font-size: 10px;
       opacity: 0.25;
       cursor: pointer;
-      display: none; /* default: public ला दिसणार नाही */
-}
-#admin-toggle:hover {
+      display: none; /* public ला default hide */
+    }
+    #admin-toggle:hover {
       opacity: 0.9;
-}
+    }
 
     /* ===== Footer ===== */
     footer {
@@ -661,7 +661,7 @@
           <!-- JS इथे प्रॉडक्ट कार्ड्स टाकेल -->
         </div>
 
-        <!-- ===== Admin Panel for Products (फक्त admin साठी, default hidden) ===== -->
+        <!-- ===== Admin Panel for Products (फक्त admin साठी) ===== -->
         <div class="admin-panel">
           <div class="admin-title">Products Manage Panel (Admin)</div>
           <div class="admin-grid">
@@ -772,7 +772,7 @@
             </p>
           </article>
 
-         <article class="card">
+          <article class="card">
             <h3>कामाची स्टाईल</h3>
             <p>
               “पहिले काम, मग आवाज” असा pattern.  
@@ -854,7 +854,7 @@
           <h2 class="section-title">इथे Contact करा</h2>
           <p class="section-sub">
             खाली basic माहिती fill करा किंवा direct WhatsApp / कॉल करा.  
-            Form सध्या demo आहे – live करण्यासाठी नंतर backend / Google Form connect करू शकतो.
+            Form भरल्यावर तुमच्या मोबाईलवर WhatsApp open होईल आणि मेसेज ready होईल.
           </p>
         </div>
 
@@ -890,7 +890,7 @@
             </div>
           </div>
 
-          <!-- Right: Simple Form (Front-end only) -->
+          <!-- Right: Form -->
           <div>
             <form onsubmit="handleSubmit(event)">
               <div>
@@ -903,7 +903,6 @@
               </div>
               <div>
                 <label for="product">उत्पादन</label>
-                <!-- इथे तुला फोटोमध्ये दिसणारे options आहेत, हवे तसे नंतर बदलू शकतोस -->
                 <select id="product" name="product">
                   <option value="खवा / मावा">खवा / मावा</option>
                   <option value="दूध">दूध</option>
@@ -921,10 +920,10 @@
                 <textarea id="message" name="message" placeholder="आपली requirement थोडक्यात लिहा."></textarea>
               </div>
               <p class="form-hint">
-                Submit वर क्लिक केल्यावर माहिती फक्त इथे ब्राउझरमध्येच दिसेल.  
-                Actual order साठी कृपया WhatsApp / कॉल वर confirm करा.
+                Submit वर क्लिक केल्यावर WhatsApp वर मेसेज तयार होईल.  
+                Actual order confirm करण्यासाठी तुम्ही किंवा आम्ही chat / call वर तपशील final करू.
               </p>
-              <button type="submit" class="btn-submit">Inquiry Save (Demo)</button>
+              <button type="submit" class="btn-submit">Inquiry WhatsApp वर पाठवा</button>
               <p id="form-status" class="form-hint"></p>
             </form>
           </div>
@@ -941,39 +940,38 @@
     </footer>
   </div>
 
-  <!-- लहान Admin बटन (फक्त तुला माहित) -->
+  <!-- लहान Admin बटन (फक्त admin मोडमध्ये) -->
   <div id="admin-toggle" class="pill">Admin</div>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  <script>
+    // URL मधून admin मोड तपासा (?admin=MLL2025)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get("admin") === "MLL2025";
 
-  // ===== Contact form – WhatsApp ला मेसेज पाठवण्यासाठी =====
-  function handleSubmit(e) {
-    e.preventDefault();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const product = document.getElementById("product").value;
-    const quantity = document.getElementById("quantity").value.trim();
-    const msg = document.getElementById("message").value.trim();
+    // ===== Contact form – WhatsApp ला मेसेज पाठवण्यासाठी =====
+    function handleSubmit(e) {
+      e.preventDefault();
 
-    const text = encodeURIComponent(
-      `MLL साठी नवीन Inquiry:\n\n` +
-      `नाव: ${name}\n` +
-      `मोबाईल: ${phone}\n` +
-      `उत्पादन: ${product}\n` +
-      `Quantity: ${quantity}\n` +
-      `मेसेज: ${msg}`
-    );
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const product = document.getElementById("product").value;
+      const quantity = document.getElementById("quantity").value.trim();
+      const msg = document.getElementById("message").value.trim();
 
-    // इथे तुझा नंबर fix केला आहे
-    const url = `https://wa.me/919765079101?text=${text}`;
+      const text = encodeURIComponent(
+        `MLL साठी नवीन Inquiry:\n\n` +
+        `नाव: ${name}\n` +
+        `मोबाईल: ${phone}\n` +
+        `उत्पादन: ${product}\n` +
+        `Quantity: ${quantity}\n` +
+        `मेसेज: ${msg}`
+      );
 
-    // कस्टमरच्या फोनवर WhatsApp उघडेल
-    window.location.href = url;
-  }
-
-  // इथे पुढचा Products चा JS तसाच ठेवा...
+      const url = `https://wa.me/919765079101?text=${text}`;
+      window.location.href = url;
+    }
 
     // ===== Products Dynamic Logic with localStorage =====
     const PRODUCTS_KEY = "mllProductsV1";
@@ -1081,23 +1079,26 @@
           card.appendChild(tagsWrapper);
         }
 
-        const actions = document.createElement("div");
-        actions.className = "product-actions";
+        // Edit/Delete फक्त admin मोडमध्येच
+        if (isAdmin) {
+          const actions = document.createElement("div");
+          actions.className = "product-actions";
 
-        const editBtn = document.createElement("button");
-        editBtn.className = "btn-small";
-        editBtn.textContent = "Edit";
-        editBtn.dataset.index = index;
+          const editBtn = document.createElement("button");
+          editBtn.className = "btn-small";
+          editBtn.textContent = "Edit";
+          editBtn.dataset.index = index;
 
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "btn-small";
-        deleteBtn.textContent = "Delete";
-        deleteBtn.dataset.index = index;
-        deleteBtn.style.borderColor = "rgba(239,68,68,0.8)";
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className = "btn-small";
+          deleteBtn.textContent = "Delete";
+          deleteBtn.dataset.index = index;
+          deleteBtn.style.borderColor = "rgba(239,68,68,0.8)";
 
-        actions.appendChild(editBtn);
-        actions.appendChild(deleteBtn);
-        card.appendChild(actions);
+          actions.appendChild(editBtn);
+          actions.appendChild(deleteBtn);
+          card.appendChild(actions);
+        }
 
         productsContainer.appendChild(card);
       });
@@ -1182,17 +1183,24 @@
       }
     });
 
-    // ===== Admin toggle (फक्त कोड माहित असणाऱ्याला panel दिसेल) =====
-    adminToggle.addEventListener("click", function () {
-      const code = prompt("Admin code टाका:");
-      // इथे कोड तू हव्या त्या नंबरवर बदलू शकतोस
-      if (code === "9765") {
-        adminPanel.style.display = "block";
-        adminStatus.textContent = "Admin mode ON.";
-      } else if (code !== null) {
-        alert("Wrong code.");
+    // ===== Admin toggle फक्त admin मोडमध्ये enable =====
+    if (adminToggle) {
+      if (isAdmin) {
+        adminToggle.style.display = "block";
+        adminToggle.addEventListener("click", function () {
+          const code = prompt("Admin code टाका:");
+          // इथे कोड तू हव्या त्या नंबरवर बदलू शकतोस
+          if (code === "9765") {
+            adminPanel.style.display = "block";
+            adminStatus.textContent = "Admin mode ON.";
+          } else if (code !== null) {
+            alert("Wrong code.");
+          }
+        });
+      } else {
+        adminToggle.style.display = "none";
       }
-    });
+    }
 
     // Init
     loadProducts();
